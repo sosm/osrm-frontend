@@ -2,51 +2,59 @@
 
 var L = require('leaflet');
 
-var streets = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoibXNsZWUiLCJhIjoiclpiTWV5SSJ9.P_h8r37vD8jpIH1A6i1VRg', {
-    attribution: '<a href="https://www.mapbox.com/about/maps">© Mapbox</a> <a href="http://openstreetmap.org/copyright">© OpenStreetMap</a> | <a href="http://mapbox.com/map-feedback/">Improve this map</a>'
+var standard = L.tileLayer('//tile.osm.ch/switzerland/{z}/{x}/{y}.png', {
+    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a>'
   }),
-  outdoors = L.tileLayer('https://api.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoibXNsZWUiLCJhIjoiclpiTWV5SSJ9.P_h8r37vD8jpIH1A6i1VRg', {
-    attribution: '<a href="https://www.mapbox.com/about/maps">© Mapbox</a> <a href="http://openstreetmap.org/copyright">© OpenStreetMap</a> | <a href="http://mapbox.com/map-feedback/">Improve this map</a>'
+  swiss_style = L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
+    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a>'
   }),
-  satellite = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoibXNsZWUiLCJhIjoiclpiTWV5SSJ9.P_h8r37vD8jpIH1A6i1VRg', {
-    attribution: '<a href="https://www.mapbox.com/about/maps">© Mapbox</a> <a href="http://openstreetmap.org/copyright">© OpenStreetMap</a> | <a href="http://mapbox.com/map-feedback/">Improve this map</a>'
+ osm_de = L.tileLayer('//{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a>'
   }),
-  osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="http://www.openstreetmap.org/copyright/en">OpenStreetMap</a> contributors'
-  }),
-  osm_de = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-    attribution: '© <a href="http://www.openstreetmap.org/copyright/en">OpenStreetMap</a> contributors'
-  }),
-  small_components = L.tileLayer('http://tools.geofabrik.de/osmi/tiles/routing_i/{z}/{x}/{y}.png', {})
+  hiking = L.tileLayer('//tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {}),
+  bike = L.tileLayer('//tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {})
 
 module.exports = {
   defaultState: {
-    center: L.latLng(38.8995, -77.0269),
-    zoom: 13,
+    center: L.latLng(47, 8),
+    zoom: 10,
     waypoints: [],
     language: 'en',
     alternative: 0,
-    layer: streets
+    layer: standard
   },
   services: [{
     label: 'Car (fastest)',
-    path: 'https://router.project-osrm.org/route/v1'
+    path: 'http://127.0.0.1:3331/route/v1'
+  },
+  {
+    label: 'Bike (city)',
+    path: 'http://127.0.0.1:3332/route/v1'
+  },
+  {
+    label: 'Bike (touring)',
+    path: 'http://127.0.0.1:3333/route/v1'
+  },
+  {
+    label: 'Foot',
+    path: 'http://127.0.0.1:3334/route/v1'
+  },
+  {
+    label: 'Hiking',
+    path: 'http://127.0.0.1:3335/route/v1'
   }],
   layer: [{
-    'Mapbox Streets': streets,
-    'Mapbox Outdoors': outdoors,
-    'Mapbox Streets Satellite': satellite,
-    'openstreetmap.org': osm,
-    'openstreetmap.de.org': osm_de
+    'standard': standard,
+    'swiss style': swiss_style,
+    'osm.de': osm_de
   }],
   overlay: {
-    'Small Components': small_components
+    'hiking': hiking,
+    'bike': bike,
   },
   baselayer: {
-    one: streets,
-    two: outdoors,
-    three: satellite,
-    four: osm,
-    five: osm_de
+    one: standard,
+    two: swiss_style,
+    three: osm_de
   }
 };
