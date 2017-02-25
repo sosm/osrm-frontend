@@ -299,7 +299,7 @@
 .osrm-directions-icon {
     background-image: url('../images/osrm.toolbar.icons.svg');
     -webkit-background-size: 146px 24px;
-    background-size: 146px 24px;
+    background-size: 170px 24px;
     margin: 0;
     content: '';
     display: inline-block;
@@ -317,6 +317,7 @@
 .osrm-mapillary-icon  { background-position: -120px 0; }
 .osrm-flag-icon-en  { background-position: 0px 0; }
 .osrm-flag-icon-de  { background-position: -24px 0; }
+.osrm-flag-icon-fr  { background-position: -144px 0; }
 
 .leaflet-osrm-tools-hide
 {
