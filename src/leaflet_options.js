@@ -25,23 +25,23 @@ module.exports = {
   },
   services: [{
     label: 'Car (fastest)',
-    path: 'http://127.0.0.1:3331/route/v1'
+    path: '/routed-car/route/v1'
   },
   {
     label: 'Bike (city)',
-    path: 'http://127.0.0.1:3332/route/v1'
+    path: '/routed-bike/route/v1'
   },
   {
     label: 'Bike (touring)',
-    path: 'http://127.0.0.1:3333/route/v1'
+    path: '/routed-bike-touring/route/v1'
   },
   {
     label: 'Foot',
-    path: 'http://127.0.0.1:3334/route/v1'
+    path: '/routed-foot/route/v1'
   },
   {
     label: 'Hiking',
-    path: 'http://127.0.0.1:3335/route/v1'
+    path: '/routed-hiking/route/v1'
   }],
   layer: [{
     'standard': standard,
