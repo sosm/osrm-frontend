@@ -87,6 +87,7 @@
 				{
 					var services = this.options.services, router = this.options.router;
 					profileSel = L.DomUtil.create('select', 'leaflet-routing-select-profile', fromtocontainer);
+                                        profileSel.id = "profile-selector";
 					for (var profile = 0, len = this.options.services.length; profile < len; profile++)
 					{
 						var profOption;
