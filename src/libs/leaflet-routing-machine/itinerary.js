@@ -115,7 +115,7 @@
 				data = L.extend({
 					name: alt.name,
 					distance: this._formatter.formatDistance(alt.summary.totalDistance, this.options.totalDistanceRoundingSensitivity),
-					time: this._formatter.formatTime(alt.summary.totalTime)
+					time: this._formatter.formatTime(this._router.options.fixspeed ? alt.summary.totalDistance / this._router.options.fixspeed * 3.6 : alt.summary.totalTime)
 				}, alt);
 			altDiv.innerHTML = typeof(template) === 'function' ? template(data) : L.Util.template(template, data);
 			L.DomEvent.addListener(altDiv, 'click', this._onAltClicked, this);

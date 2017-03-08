@@ -38,7 +38,9 @@ var State = L.Class.extend({
 
   set: function(options) {
     L.setOptions(this, options);
-    L.Util.setOptions(this._lrm.options.router, {serviceUrl: this._lrm.options.router.options.services[this.options.service].path});
+    L.Util.setOptions(this._lrm.options.router, {
+        serviceUrl: this._lrm.options.router.options.services[this.options.service].path,
+        fixspeed: this._lrm.options.router.options.services[this.options.service].fixspeed});
     L.DomUtil.get("profile-selector").selectedIndex = this.options.service;
     this._lrm.setWaypoints(this.options.waypoints);
     this._map.setView(this.options.center, this.options.zoom);

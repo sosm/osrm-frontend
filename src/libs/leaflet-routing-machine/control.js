@@ -100,7 +100,9 @@
 						if (profileSel.selectedIndex >= 0 &&
 							profileSel.selectedIndex < services.length) {
 							L.Util.setOptions(router,
-								{serviceUrl: services[profileSel.selectedIndex].path});
+								{
+                                                                    serviceUrl: services[profileSel.selectedIndex].path,
+                                                                    fixspeed: services[profileSel.selectedIndex].fixspeed});
 							this.setWaypoints(this.getWaypoints());
 						}
 					}, this);
