@@ -2,7 +2,7 @@
 
 var L = require('leaflet');
 var Geocoder = require('leaflet-control-geocoder');
-var LRM = require('./libs/leaflet-routing-machine');
+var LRM = require('leaflet-routing-machine');
 var locate = require('leaflet.locatecontrol');
 var options = require('./lrm_options');
 var links = require('./links');
@@ -129,7 +129,7 @@ var plan = new ReversablePlan([], {
   }
 });
 
-L.extend(L.routing, itineraryBuilder);
+L.extend(L.Routing, itineraryBuilder);
 
 // add marker labels
 var controlOptions = {
