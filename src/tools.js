@@ -10,7 +10,7 @@ var Control = L.Control.extend({
     josmButtonClass: "",
     debugButtonClass: "",
     mapillaryButtonClass: "",
-    localizationButtonClass: ""
+    localizationChooserClass: ""
   },
 
   initialize: function(localization, languages, options) {
@@ -32,7 +32,6 @@ var Control = L.Control.extend({
       popupCloseButton,
       gpxContainer;
     this._container = L.DomUtil.create('div', 'leaflet-osrm-tools-container ' + this.options.toolsContainerClass);
-    this._localizationList = this._createLocalizationList();
     L.DomEvent.disableClickPropagation(this._container);
     editorContainer = L.DomUtil.create('div', 'leaflet-osrm-tools-editor', this._container);
     editorButton = L.DomUtil.create('span', this.options.editorButtonClass, editorContainer);
@@ -52,8 +51,6 @@ var Control = L.Control.extend({
     L.DomEvent.on(mapillaryButton, 'click', this._openMapillary, this);
     this._localizationContainer = L.DomUtil.create('div', 'leaflet-osrm-tools-localization', this._container);
     this._createLocalizationList(this._localizationContainer);
-    L.DomEvent.on(this._localizationContainer, 'mouseenter', this._openLocalizationList, this);
-    L.DomEvent.on(this._localizationContainer, 'mouseleave', this._closeLocalizationList, this);
     return this._container;
   },
 
@@ -104,39 +101,25 @@ var Control = L.Control.extend({
 
   _createLocalizationList: function(container) {
     var _this = this;
-    var localizationButton = L.DomUtil.create('span', this.options.localizationButtonClass + "-" + this._local.key, container);
-    localizationButton.title = this._local['Select language'];
-    L.DomEvent.on(localizationButton, 'click', function() { this.fire("languagechanged", {language: this._local.key}); }, this);
+    var localizationSelect = L.DomUtil.create('select', _this.options.localizationChooserClass, container);
+    localizationSelect.setAttribute('title', _this._local['Select language']);
+    L.DomEvent.on(localizationSelect, 'change', function(event) {
+        this.fire('languagechanged', {
+            language: event.target.value
+        });
+    }, _this);
     Object.keys(this._languages).forEach(function(key) {
+        var option = L.DomUtil.create('option', 'fill-osrm', localizationSelect);
+        option.setAttribute('value', key);
+        option.appendChild(
+            document.createTextNode(_this._languages[key])
+        );
         if (key == _this._local.key)
         {
-            return;
+            option.setAttribute('selected', '');
         }
-        var button = L.DomUtil.create('span', _this.options.localizationButtonClass + "-" + key + " leaflet-osrm-tools-hide", container);
-        button.title = _this._languages[key];
-        var ev = {language: String(key)};
-        L.DomEvent.on(button, 'click', function() { _this.fire("languagechanged", ev); }, _this);
     });
-  },
-
-  _openLocalizationList: function() {
-    var child;
-    for (var i = 1; i < this._localizationContainer.childNodes.length; ++i)
-    {
-      child = this._localizationContainer.childNodes[i];
-      L.DomUtil.removeClass(child, 'leaflet-osrm-tools-hide');
-    }
-  },
-
-  _closeLocalizationList: function() {
-    var child;
-    for (var i = 1; i < this._localizationContainer.childNodes.length; ++i)
-    {
-        child = this._localizationContainer.childNodes[i];
-        L.DomUtil.addClass(child, 'leaflet-osrm-tools-hide');
-    }
-  },
-
+  }
 });
 
 module.exports = {
