@@ -27,26 +27,31 @@ module.exports = {
   services: [{
     label: 'Car (fastest)',
     path: '/routed-car/route/v1',
+    debug: 'car',
     fixspeed: 0
   },
   {
     label: 'Bike (city)',
     path: '/routed-bike/route/v1',
+    debug: 'bike',
     fixspeed: 18
   },
   {
     label: 'Bike (touring)',
     path: '/routed-bike-touring/route/v1',
+    debug: 'bike-touring',
     fixspeed: 18
   },
   {
     label: 'Foot',
     path: '/routed-foot/route/v1',
+    debug: 'foot',
     fixspeed: 4.5
   },
   {
     label: 'Hiking',
     path: '/routed-hiking/route/v1',
+    debug: 'hiking',
     fixspeed: 4.5
   }],
   layer: [{

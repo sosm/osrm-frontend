@@ -37,11 +37,24 @@ var State = L.Class.extend({
   },
 
   set: function(options) {
+    var self = this;
     L.setOptions(this, options);
     L.Util.setOptions(this._lrm.options.router, {
         serviceUrl: this._lrm.options.router.options.services[this.options.service].path,
         fixspeed: this._lrm.options.router.options.services[this.options.service].fixspeed});
-    L.DomUtil.get("profile-selector").selectedIndex = this.options.service;
+    var profileSelector = L.DomUtil.get("profile-selector");
+    profileSelector.selectedIndex = this.options.service;
+    var services = self._lrm.options.router.options.services;
+    L.DomEvent.addListener(profileSelector, 'change', function () {
+	if (profileSelector.selectedIndex >= 0 &&
+			profileSelector.selectedIndex < services.length) {
+		self._tools.setProfile(services[profileSelector.selectedIndex]);
+	}
+    });
+    if (this.options.service >= 0 &&
+			this.options.service < services.length) {
+                self._tools.setProfile(services[this.options.service]);
+    }
     this._lrm.setWaypoints(this.options.waypoints);
     this._map.setView(this.options.center, this.options.zoom);
   },
