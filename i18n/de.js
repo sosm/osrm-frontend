@@ -12,5 +12,10 @@ module.exports = {
   'Shortlink': 'Kurzlink',
   'Start - press enter to drop marker': 'Start - drücken um einen Marker zu plazieren',
   'End - press enter to drop marker': 'Ende - drücken um einen Marker zu plazieren',
-  'Via point - press enter to drop marker': 'Zwischenstop - drücken um einen Marker zu plazieren'
+  'Via point - press enter to drop marker': 'Zwischenstop - drücken um einen Marker zu plazieren',
+  'Bike (city)': 'Velo (Stadt)',
+  'Bike (touring)': 'Velo (Touren)',
+  'Car (fastest)': 'Auto',
+  'Foot': 'Fussgänger',
+  'Hiking': 'Wanderer'
 };

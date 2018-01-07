@@ -9,5 +9,10 @@ module.exports = {
   'Select language': 'Choisir la langue',
   'Start - press enter to drop marker': 'Point de départ',
   'End - press enter to drop marker': 'Étape intermédiaire',
-  'Via point - press enter to drop marker': 'Point d\'arrivée'
+  'Via point - press enter to drop marker': 'Point d\'arrivée',
+  'Bike (city)': 'Vélo (ville)',
+  'Bike (touring)': 'Vélo (randonner)',
+  'Car (fastest)': 'Voiture',
+  'Foot': 'Piéton',
+  'Hiking': 'Randonneur'
 };

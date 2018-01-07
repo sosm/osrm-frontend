@@ -12,5 +12,10 @@ module.exports = {
   'Shortlink': 'Shortlink',
   'Start - press enter to drop marker': 'Start - press enter to drop marker',
   'End - press enter to drop marker': 'End - press enter to drop marker',
-  'Via point - press enter to drop marker': 'Via point - press enter to drop marker'
+  'Via point - press enter to drop marker': 'Via point - press enter to drop marker',
+  'Bike (city)': 'Bike (city)',
+  'Bike (touring)': 'Bike (touring)',
+  'Car (fastest)': 'Car (fastest)',
+  'Foot': 'Foot',
+  'Hiking': 'Hiking'
 };
