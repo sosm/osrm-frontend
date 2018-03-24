@@ -17,12 +17,19 @@ docker run -p 9966:9966 osrm/osrm-frontend
 ```
 
 Per default routing requests are made against the backend at `http://localhost:5000`.
-You can change the backend by using `-e BACKEND='http://localhost:5001'` in the `docker run` command.
+You can change the backend by using `-e OSRM_BACKEND='http://localhost:5001'` in the `docker run` command.
 
 In case Docker complains about not being able to connect to the Docker daemon make sure you are in the `docker` group.
 
 ```
 sudo usermod -aG docker $USER
+```
+
+To build the docker image locally:
+
+```bash
+docker build . -f docker/Dockerfile -t osrm-frontend
+docker run -p 9966:9966 osrm-frontend
 ```
 
 ## Development
@@ -33,12 +40,19 @@ Install dependencies via
 npm install
 ```
 
-Then compile the assets and start a server with
+Then compile assets and start the local server with
 
 ```bash
 npm start
 ```
 
+On Windows with no Unix tools installed (`bash`, `sed`, `cp`) the server could be started with two other commands
+executed by `npm start` internally:
+
+```bash
+npm run compile
+npm run start-index
+```
 
 ## Changing Backends
 

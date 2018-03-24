@@ -55,18 +55,29 @@ function formatLink(options) {
 }
 
 function parseLink(link) {
+  if (!link) return {};
   var q = qs.parse(link),
     parsedValues = {},
     options = {},
     k;
   try {
-    parsedValues.zoom = _parseInteger(q.z);
+    if (q.z !== undefined && q.z !== null) parsedValues.zoom = _parseInteger(q.z);
     parsedValues.center = q.center && _parseCoord(q.center);
-    parsedValues.waypoints = q.loc && q.loc.filter(function(loc) { return loc != ""; }).map(_parseCoord).map(
-      function(coord) {
-        return L.Routing.waypoint(coord);
+    if (q.loc) {
+      if (q.loc.constructor === Array) {
+        // more than one loc is given
+        parsedValues.waypoints = q.loc.filter(function (loc) {
+            return loc != "";
+        }).map(_parseCoord).map(
+            function (coord) {
+                return L.Routing.waypoint(coord);
+            }
+        );
+      } else if (q.loc.constructor === String) {
+        // exactly one loc is given
+        parsedValues.waypoints = [L.Routing.waypoint(_parseCoord(q.loc))];
       }
-    );
+    }
     parsedValues.language = q.hl;
     parsedValues.alternative = q.alt;
     parsedValues.units = q.df;
