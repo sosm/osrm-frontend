@@ -52,7 +52,7 @@
 /* Scale position */
 .leaflet-control-scale {
   position: absolute;
-  left: 190px;
+  left: 200px;
   bottom: 1px;
 }
 
@@ -299,7 +299,7 @@
 .osrm-directions-icon {
     background-image: url('../images/osrm.toolbar.icons.svg');
     -webkit-background-size: 146px 24px;
-    background-size: 146px 24px;
+    background-size: 170px 24px;
     margin: 0;
     content: '';
     display: inline-block;
@@ -315,6 +315,7 @@
 .osrm-josm-icon  { background-position: -72px 0; }
 .osrm-debug-icon  { background-position: -96px 0; }
 .osrm-mapillary-icon  { background-position: -120px 0; }
+.osrm-gpx-icon  { background-position: -146px 0; }
 .osrm-localization-chooser {
     color: #ffffff;
     background: transparent;
@@ -450,6 +451,13 @@
 .leaflet-osrm-tools-container span:hover
 {
    background-color: rgba(255, 255, 255, 0.2);
+}
+.leaflet-osrm-tools-container span[disabled],
+.leaflet-osrm-tools-container span[disabled]:hover
+{
+   background-color: transparent;
+   cursor: default;
+   opacity: 0.5;
 }
 
 /* Instructions */
