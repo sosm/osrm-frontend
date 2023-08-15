@@ -18,7 +18,7 @@ var mergedOptions = L.extend(leafletOptions.defaultState, parsedOptions);
 var local = localization.get(mergedOptions.language);
 
 // load only after language was chosen
-var itineraryBuilder = require('./itinerary_builder')(mergedOptions.language);
+var ItineraryBuilder = require('./itinerary_builder')(mergedOptions.language);
 
 var mapLayer = leafletOptions.layer;
 var overlay = leafletOptions.overlay;
@@ -92,9 +92,8 @@ function makeIcon(i, n) {
     });
   }
 }
-
 var plan = new ReversablePlan([], {
-  geocoder: Geocoder.nominatim(),
+  geocoder: L.Control.Geocoder.nominatim(),
   routeWhileDragging: true,
   createMarker: function(i, wp, n) {
     var options = {
@@ -129,8 +128,6 @@ var plan = new ReversablePlan([], {
   }
 });
 
-L.extend(L.Routing, itineraryBuilder);
-
 // add marker labels
 var controlOptions = {
   plan: plan,
@@ -149,7 +146,8 @@ var controlOptions = {
   services: leafletOptions.services,
   useZoomParameter: options.lrm.useZoomParameter,
   routeDragInterval: options.lrm.routeDragInterval,
-  collapsible: options.lrm.collapsible
+  collapsible: options.lrm.collapsible,
+  itineraryBuilder: new ItineraryBuilder(),
 };
 // translate profile names
 for (var profile = 0, len = controlOptions.services.length; profile < len; profile++)
