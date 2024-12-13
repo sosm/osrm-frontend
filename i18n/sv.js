@@ -13,5 +13,5 @@ module.exports = {
   'Bike': 'Bike',
   'Car': 'Car',
   'Foot': 'Foot',
-  'About': '<a href=/about.html>About this service and privacy policy</a>'
+  'About': 'Server sponsored by <a href="http://www.nine.ch/">nine</a> | <a href=/about.html>About this service and privacy policy</a>'
 };
