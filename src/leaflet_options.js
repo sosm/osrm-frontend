@@ -3,13 +3,13 @@
 var L = require('leaflet');
 
 var standard = L.tileLayer('//tile.osm.ch/switzerland/{z}/{x}/{y}.png', {
-    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a>'
+    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a> | <a href="https://osm.ch/nutze-osm.html">About</a>'
   }),
   swiss_style = L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
-    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a>'
+    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a> | <a href="https://osm.ch/nutze-osm.html">About</a>'
   }),
  osm_de = L.tileLayer('//{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a>'
+    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a> | <a href="https://osm.ch/nutze-osm.html">About</a>'
   }),
   hiking = L.tileLayer('//tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {}),
   bike = L.tileLayer('//tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {})
@@ -43,16 +43,22 @@ module.exports = {
     fixspeed: 18
   },
   {
-    label: 'Foot',
+    label: 'Foot (city)',
     path: '/routed-foot/route/v1',
     debug: 'foot',
     fixspeed: 4.5
   },
   {
-    label: 'Hiking',
+    label: 'Foot (hiking)',
     path: '/routed-hiking/route/v1',
     debug: 'hiking',
     fixspeed: 4.5
+  },
+  {
+    label: 'Foot (vampire)',
+    path: '/routed-vampire/route/v1',
+    debug: 'vampire',
+    fixspeed: 4.0
   }],
   layer: [{
     'standard': standard,
