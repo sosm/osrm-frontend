@@ -16,6 +16,7 @@ module.exports = {
   'Bike (city)': 'Velo (Stadt)',
   'Bike (touring)': 'Velo (Touren)',
   'Car (fastest)': 'Auto',
-  'Foot': 'Fussgänger',
-  'Hiking': 'Wanderer'
+  'Foot (city)': 'Fussgänger',
+  'Foot (hiking)': 'Wanderer',
+  'Foot (vampire)': 'Fussgänger (Vampir)'
 };
