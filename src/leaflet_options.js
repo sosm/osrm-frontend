@@ -59,6 +59,12 @@ module.exports = {
     path: '/routed-vampire/route/v1',
     debug: 'vampire',
     fixspeed: 4.0
+  },
+  {
+    label: 'Wheelchair',
+    path: '/routed-wheelchair/route/v1',
+    debug: 'wheelchair',
+    fixspeed: 0
   }],
   layer: [{
     'standard': standard,

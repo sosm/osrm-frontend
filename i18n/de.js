@@ -18,5 +18,6 @@ module.exports = {
   'Car (fastest)': 'Auto',
   'Foot (city)': 'Fussgänger',
   'Foot (hiking)': 'Wanderer',
-  'Foot (vampire)': 'Fussgänger (Vampir)'
+  'Foot (vampire)': 'Fussgänger (Vampir)',
+  'Wheelchair': 'Rollstuhl'
 };
