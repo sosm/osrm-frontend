@@ -38,7 +38,7 @@
     "jxon": "^2.0.0-beta.5",
     "leaflet": "~1.9.4",
     "leaflet-control-geocoder": "~2.4.0",
-    "leaflet-routing-machine": "git+https://github.com/sosm/leaflet-routing-machine#8e4b8b5f1f5932b63f36c49b198e9a5a4ba735ce",
+    "leaflet-routing-machine": "git+https://github.com/sosm/leaflet-routing-machine#0b22a5710b3f79c0f9e359d644fcccd0682e2c27",
     "leaflet.locatecontrol": "~0.79.0",
     "local-storage": "^2.0.0",
     "osrm-text-instructions": "~0.11.0",
