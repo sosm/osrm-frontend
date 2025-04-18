@@ -13,6 +13,7 @@ var standard = L.tileLayer('//tile.osm.ch/switzerland/{z}/{x}/{y}.png', {
   }),
   hiking = L.tileLayer('//tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {}),
   bike = L.tileLayer('//tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {})
+  small_components = L.tileLayer('https://tools.geofabrik.de/osmi/tiles/routing/{z}/{x}/{y}.png', {});
 
 module.exports = {
   defaultState: {
@@ -72,8 +73,9 @@ module.exports = {
     'osm.de': osm_de
   }],
   overlay: {
-    'hiking': hiking,
-    'bike': bike,
+    'Hiking': hiking,
+    'Bike': bike,
+    'Small Components': small_components
   },
   baselayer: {
     one: standard,
