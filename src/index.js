@@ -15,7 +15,7 @@ require('./polyfill');
 
 var parsedOptions = links.parse(window.location.search.slice(1));
 var mergedOptions = L.extend(leafletOptions.defaultState, parsedOptions);
-var local = localization.get(mergedOptions.language);
+var language = mergedOptions.language;
 
 // load only after language was chosen
 var ItineraryBuilder = require('./itinerary_builder')(mergedOptions.language);
@@ -23,7 +23,7 @@ var ItineraryBuilder = require('./itinerary_builder')(mergedOptions.language);
 var mapLayer = leafletOptions.layer;
 var overlay = leafletOptions.overlay;
 var baselayer = ls.get('layer') ? mapLayer[0][ls.get('layer')] : leafletOptions.defaultState.layer;
-var layers = ls.get('getOverlay') && [baselayer, overlay['hiking']] || baselayer;
+var layers = ls.get('getOverlay') && [baselayer, overlay['hiking'], overlay['Small Components']] || baselayer;
 var map = L.map('map', {
   zoomControl: true,
   dragging: true,
@@ -47,7 +47,7 @@ L.control.layers(mapLayer, overlay, {
 L.control.scale().addTo(map);
 
 /* set about text to attribution control */
-map.attributionControl.setPrefix(local['About'])
+map.attributionControl.setPrefix(localization.t(language, 'About'))
 
 /* Store User preferences */
 // store baselayer changes
@@ -95,6 +95,7 @@ function makeIcon(i, n) {
     });
   }
 }
+
 var plan = new ReversablePlan([], {
   geocoder: L.Control.Geocoder.nominatim(),
   routeWhileDragging: true,
@@ -118,8 +119,8 @@ var plan = new ReversablePlan([], {
   dragStyles: options.lrm.dragStyles,
   geocodersClassName: options.lrm.geocodersClassName,
   geocoderPlaceholder: function(i, n) {
-    var startend = [local['Start - press enter to drop marker'], local['End - press enter to drop marker']];
-    var via = [local['Via point - press enter to drop marker']];
+    var startend = [localization.t(language, 'Start - press enter to drop marker'), localization.t(language, 'End - press enter to drop marker')];
+    var via = [localization.t(language, 'Via point - press enter to drop marker')];
     if (i === 0) {
       return startend[0];
     }
@@ -155,7 +156,7 @@ var controlOptions = {
 // translate profile names
 for (var profile = 0, len = controlOptions.services.length; profile < len; profile++)
 {
-  controlOptions.services[profile].label = local[controlOptions.services[profile].label]
+  controlOptions.services[profile].label = localization.t(language, controlOptions.services[profile].label) || controlOptions.services[profile].label;
 }
 
 var router = (new L.Routing.OSRMv1(controlOptions));
