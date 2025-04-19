@@ -56,5 +56,6 @@ module.exports = {
   },
   baselayer: {
     one: osm,
+    two: osm_de
   }
 };
