@@ -15,7 +15,7 @@ require('./polyfill');
 
 var parsedOptions = links.parse(window.location.search.slice(1));
 var mergedOptions = L.extend(leafletOptions.defaultState, parsedOptions);
-var local = localization.get(mergedOptions.language);
+var language = mergedOptions.language;
 
 // load only after language was chosen
 var ItineraryBuilder = require('./itinerary_builder')(mergedOptions.language);
@@ -23,7 +23,7 @@ var ItineraryBuilder = require('./itinerary_builder')(mergedOptions.language);
 var mapLayer = leafletOptions.layer;
 var overlay = leafletOptions.overlay;
 var baselayer = ls.get('layer') ? mapLayer[0][ls.get('layer')] : leafletOptions.defaultState.layer;
-var layers = ls.get('getOverlay') && [baselayer, overlay['hiking']], overlay['Small Components']] || baselayer;
+var layers = ls.get('getOverlay') && [baselayer, overlay['hiking'], overlay['Small Components']] || baselayer;
 var map = L.map('map', {
   zoomControl: true,
   dragging: true,
@@ -45,6 +45,9 @@ L.control.layers(mapLayer, overlay, {
 }).addTo(map);
 
 L.control.scale().addTo(map);
+
+/* set about text to attribution control */
+map.attributionControl.setPrefix(localization.t(language, 'About'))
 
 /* Store User preferences */
 // store baselayer changes

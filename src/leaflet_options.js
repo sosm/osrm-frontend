@@ -2,17 +2,28 @@
 
 var L = require('leaflet');
 
-var standard = L.tileLayer('//tile.osm.ch/switzerland/{z}/{x}/{y}.png', {
+var osmAttribution = '© <a href="https://www.openstreetmap.org/copyright/en">OpenStreetMap</a> contributors',
+    waymarkedtrailsAttribution = '© <a href="http://waymarkedtrails.org">Sarah Hoffmann</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)';
+
+var osm = L.tileLayer('//tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: osmAttribution,
+  }),
+  standard = L.tileLayer('//tile.osm.ch/switzerland/{z}/{x}/{y}.png', {
     attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a> | <a href="https://osm.ch/nutze-osm.html">About</a>'
   }),
   swiss_style = L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
     attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a> | <a href="https://osm.ch/nutze-osm.html">About</a>'
   }),
- osm_de = L.tileLayer('//{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-    attribution: 'Map data © OpenStreetMap contributors under <a ref="http://www.openstreetmap.org/copyright">ODbL</a> | <a href="https://osm.ch/nutze-osm.html">About</a>'
+  osm_de = L.tileLayer('//tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+    attribution: '<a target="_blank" href="http://www.openstreetmap.org/">Karte hergestellt aus OpenStreetMap-Daten</a> | Lizenz: <a rel="license" target="_blank" href="http://opendatacommons.org/licenses/odbl/">Open Database License (ODbL)</a>'
   }),
-  hiking = L.tileLayer('//tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {}),
-  bike = L.tileLayer('//tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {})
+  
+  hiking = L.tileLayer('//tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
+    attribution: waymarkedtrailsAttribution,
+  }),
+  bike = L.tileLayer('//tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
+    attribution: waymarkedtrailsAttribution,
+  }),
   small_components = L.tileLayer('https://tools.geofabrik.de/osmi/tiles/routing/{z}/{x}/{y}.png', {});
 
 module.exports = {
@@ -79,6 +90,7 @@ module.exports = {
   },
   baselayer: {
     one: standard,
+    four: osm,
     two: swiss_style,
     three: osm_de
   }
