@@ -19,5 +19,6 @@ module.exports = {
   'Foot (city)': 'Foot (city)',
   'Foot (hiking)': 'Hiking',
   'Foot (vampire)': 'Foot (vampire)',
-  'Wheelchair': 'Wheelchair'
+  'Wheelchair': 'Wheelchair',
+  'About': '<a href="contact.html">Operated by SOSM, Contact/Imprint</a> <a href="https://sosm.ch/about/terms-of-service/">Nutzungsbedingungen und Datenschutz.</a> Hosting sponsored by <a href="https://adfinis.com">Adfinis</a> and <a href="https://nine.ch/">nine</a>'
 };
